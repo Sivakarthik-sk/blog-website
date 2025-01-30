@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Writing Platform</title>
+    <style>
+        /* Modern and Beautiful Styling */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-gradient);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--primary-color);
+        }
+
+        .menu-bar {
+            background: var(--primary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .menu-bar a {
+            color: white;
+            padding: 1rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-bar a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .hidden { display: none; }
+
+        .blog-post {
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            text-align: left;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .like-comment-section {
+            margin-top: 1em;
+        }
+
+        .like-comment-section button {
+            width: auto;
+            margin-right: 1em;
+            background-color: var(--accent-color);
+        }
+
+        .like-comment-section button:hover {
+            background-color: #c0392b;
+        }
+
+        .profile-section {
+            text-align: left;
+        }
+
+        .profile-section input {
+            width: calc(100% - 22px);
+        }
+
+        .contact-us-section {
+            text-align: left;
+        }
+
+        .contact-us-section p {
+            margin: 0.5em 0;
+        }
+
+        .captcha-container {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .age-verification {
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+            margin: 1rem 0;
+        }
+
+        .home-content {
+            text-align: left;
+        }
+
+        .home-content h2 {
+            color: var(--secondary-color);
+        }
+
+        .home-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .home-content ul li {
+            background: var(--background-gradient);
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .home-content ul li:hover {
+            transform: translateX(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-bar">
+        <a href="#" onclick="showPage('homeSection')">Home</a>
+        <a href="#" onclick="showPage('loginSection')">Login</a>
+        <a href="#" onclick="showPage('signupSection')">Sign Up</a>
+        <a href="#" onclick="showPage('blogSection')">Write Blog</a>
+        <a href="#" onclick="showPage('publishedBlogsSection')">Published Blogs</a>
+        <a href="#" onclick="showPage('contactUsSection')">Contact Us</a>
+        <a href="#" onclick="showPage('profileSection')">Profile</a>
+    </div>
+    
+    <!-- Home Section -->
+    <div class="container" id="homeSection">
+        <div class="home-content">
+            <h2>Welcome to the Blog Writing Platform</h2>
+            <p>Blogging is a great way to express your thoughts, share knowledge, and connect with people worldwide. Whether you're a seasoned writer or just starting, our platform is here to help you grow.</p>
+            <h3>Why Join Us?</h3>
+            <ul>
+                <li>Improve your writing skills with regular practice.</li>
+                <li>Build an online presence and showcase your expertise.</li>
+                <li>Engage with a like-minded community of bloggers.</li>
+                <li>Get feedback and grow your audience.</li>
+            </ul>
+            <h3>How It Works</h3>
+            <ul>
+                <li>Sign up and create your profile.</li>
+                <li>Start writing and publish your blogs.</li>
+                <li>Interact with readers through likes and comments.</li>
+                <li>Update your profile and track your progress.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Login Section -->
+    <div class="container hidden" id="loginSection">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+            <input type="email" id="loginEmail" placeholder="Your Email" required>
+            <input type="password" id="loginPassword" placeholder="Your Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMessage" style="color: var(--accent-color);"></p>
+    </div>
+
+    <!-- Sign Up Section -->
+    <div class="container hidden" id="signupSection">
+        <h2>Sign Up</h2>
+        <form id="signupForm" onsubmit="event.preventDefault(); handleSignup();">
+            <input type="text" id="signupName" placeholder="Your Name" required>
+            <input type="email" id="signupEmail" placeholder="Your Email" required>
+            <input type="password" id="signupPassword" placeholder="Your Password" required>
+            
+            <div class="age-verification">
+                <label>Date of Birth (Must be 13+ years old)</label>
+                <input type="date" id="signupDOB" required>
+            </div>
+
+            <div class="captcha-container">
+                <div id="captchaQuestion" style="font-weight: bold;"></div>
+                <input type="text" id="captchaAnswer" placeholder="Enter answer" required>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p id="signupMessage" style="color: var(--accent-color);"></p>
+    </div>
+
+    <!-- Write Blog Section -->
+    <div class="container hidden" id="blogSection">
+        <h2>Write a Blog</h2>
+        <form id="blogForm" onsubmit="event.preventDefault(); handleBlogSubmit();">
+            <input type="text" id="blogTitle" placeholder="Blog Title" required>
+            <textarea id="blogContent" placeholder="Write your blog here..." rows="10" required></textarea>
+            <button type="submit">Publish Blog</button>
+        </form>
+    </div>
+
+    <!-- Published Blogs Section -->
+    <div class="container hidden" id="publishedBlogsSection">
+        <h2>Published Blogs</h2>
+        <div id="publishedBlogs">
+            <!-- Blog posts will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="container hidden contact-us-section" id="contactUsSection">
+        <h2>Contact Us</h2>
+        <p>Email: support@blogplatform.com</p>
+        <p>Phone: +91 1234567890</p>
+        <h3>Send a Query</h3>
+        <form id="queryForm" onsubmit="event.preventDefault(); handleQuerySubmit();">
+            <input type="text" id="queryName" placeholder="Your Name" required>
+            <input type="email" id="queryEmail" placeholder="Your Email" required>
+            <textarea id="queryMessage" placeholder="Your Query" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="container hidden profile-section" id="profileSection">
+        <h2>Profile</h2>
+        <p>Name: <span id="profileName">User Name</span></p>
+        <p>Email: <span id="profileEmail">user@example.com</span></p>
+        <h3>Update Profile</h3>
+        <form id="profileForm" onsubmit="event.preventDefault(); handleProfileUpdate();">
+            <input type="text" id="updateName" placeholder="New Name" required>
+            <input type="password" id="updatePassword" placeholder="New Password" required>
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+
+    <script>
+        // Simulated database for users and blogs
+        let users = [];
+        let blogs = [];
+        let currentUser = null;
+
+        // CAPTCHA Implementation
+        let currentCaptcha = null;
+
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10);
+            const num2 = Math.floor(Math.random() * 10);
+            currentCaptcha = num1 + num2;
+            document.getElementById('captchaQuestion').textContent = `What is ${num1} + ${num2}?`;
+        }
+
+        // Age Verification
+        function isOldEnough(dob) {
+            const birthDate = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age >= 13;
+        }
+
+        // Function to show the selected page and hide others
+        function showPage(pageId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            if (pageId === 'profileSection' && currentUser) {
+                document.getElementById('profileName').textContent = currentUser.name;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+            }
+        }
+
+        // Function to handle login
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                alert('Login successful!');
+                showPage('blogSection');
+            } else {
+                document.getElementById('loginMessage').textContent = 'Invalid email or password.';
+            }
+        }
+
+        // Function to handle signup
+        function handleSignup() {
+            const dob = document.getElementById('signupDOB').value;
+            const captchaResponse = parseInt(document.getElementById('captchaAnswer').value);
+
+            if (!isOldEnough(dob)) {
+                document.getElementById('signupMessage').textContent = 
+                    "You must be at least 13 years old to sign up!";
+                return;
+            }
+
+            if (captchaResponse !== currentCaptcha) {
+                document.getElementById('signupMessage').textContent = 
+                    "CAPTCHA verification failed!";
+                generateCaptcha(); // Refresh CAPTCHA
+                return;
+            }
+
+            // Proceed with signup
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            if (users.some(u => u.email === email)) {
+                document.getElementById('signupMessage').textContent = 
+                    "Email already registered!";
+                return;
+            }
+
+            users.push({ name, email, password, dob });
+            alert("Signup successful!");
+            showPage('loginSection');
+            generateCaptcha(); // Generate new CAPTCHA for next user
+        }
+
+        // Function to handle blog submission
+        function handleBlogSubmit() {
+            const title = document.getElementById('blogTitle').value;
+            const content = document.getElementById('blogContent').value;
+
+            if (currentUser) {
+                const blog = {
+                    title,
+                    content,
+                    author: currentUser.name,
+                    likes: 0,
+                    comments: []
+                };
+                blogs.push(blog);
+                alert('Blog published successfully!');
+                showPage('publishedBlogsSection');
+                displayBlogs();
+            } else {
+                alert('You must be logged in to publish a blog.');
+            }
+        }
+
+        // Function to display published blogs
+        function displayBlogs() {
+            const publishedBlogsDiv = document.getElementById('publishedBlogs');
+            publishedBlogsDiv.innerHTML = '';
+
+            blogs.forEach((blog, index) => {
+                const blogPost = document.createElement('div');
+                blogPost.className = 'blog-post';
+                blogPost.innerHTML = `
+                    <h3>${blog.title}</h3>
+                    <p><strong>By:</strong> ${blog.author}</p>
+                    <p>${blog.content}</p>
+                    <div class="like-comment-section">
+                        <button onclick="handleLike(${index})">👍 ${blog.likes}</button>
+                        <input type="text" id="commentInput${index}" placeholder="Add a comment">
+                        <button onclick="handleComment(${index})">💬 Comment</button>
+                    </div>
+                    <div id="comments${index}">
+                        ${blog.comments.map(comment => `<p><strong>${comment.user}:</strong> ${comment.text}</p>`).join('')}
+                    </div>
+                `;
+                publishedBlogsDiv.appendChild(blogPost);
+            });
+        }
+
+        // Function to handle likes
+        function handleLike(index) {
+            blogs[index].likes++;
+            displayBlogs();
+        }
+
+        // Function to handle comments
+        function handleComment(index) {
+            const commentInput = document.getElementById(`commentInput${index}`).value;
+            if (currentUser && commentInput) {
+                blogs[index].comments.push({ user: currentUser.name, text: commentInput });
+                displayBlogs();
+            } else {
+                alert('You must be logged in to comment.');
+            }
+        }
+
+        // Function to handle profile update
+        function handleProfileUpdate() {
+            const newName = document.getElementById('updateName').value;
+            const newPassword = document.getElementById('updatePassword').value;
+
+            if (currentUser) {
+                currentUser.name = newName;
+                currentUser.password = newPassword;
+                alert('Profile updated successfully!');
+                showPage('profileSection');
+            } else {
+                alert('You must be logged in to update your profile.');
+            }
+        }
+
+        // Function to handle query submission
+        function handleQuerySubmit() {
+            const name = document.getElementById('queryName').value;
+            const email = document.getElementById('queryEmail').value;
+            const message = document.getElementById('queryMessage').value;
+            console.log('Query Submitted:', { name, email, message });
+            alert('Thank you for your query! We will get back to you soon.');
+        }
+
+        // Initialize CAPTCHA on page load
+        generateCaptcha();
+    </script>
+</body>
+</html>
